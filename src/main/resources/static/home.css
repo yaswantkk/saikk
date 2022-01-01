@@ -1,5 +1,8 @@
 body{
-	background:#e2e2e2!important;
+  background-image: url('https://www.graduateprogram.org/wp-content/uploads/2020/01/Jan.-13-How-to-Use-LMS-in-School_web-v2.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
 }
 
 

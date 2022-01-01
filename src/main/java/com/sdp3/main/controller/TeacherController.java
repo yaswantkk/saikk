@@ -13,7 +13,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sdp3.main.entity.Course;
 import com.sdp3.main.entity.Enroll;
@@ -100,18 +102,19 @@ public class TeacherController {
 		model.addAttribute("course",course);
 		return "teacher/teacher_courses";
 	}
-	@RequestMapping("/createCourseSave")
-	public String createCourseSave(@ModelAttribute("Course") Course course,Model model,HttpSession session) {
+	@PostMapping("/createCourseSave")
+	public String createCourseSave(@ModelAttribute("Course") Course course,Model model,HttpSession session,RedirectAttributes ra) {
 		
 		try {
+			course.setAccessCode("1212");
 			this.courseService.saveCourse(course);
 			model.addAttribute("course",new Course());
 			model.addAttribute("title","This is Course page");
-			return "teacher/teacher_courses";
+			return "redirect:/teacher/courses";
 		}catch(Exception e) {
 			model.addAttribute("Course",new Course());
 			model.addAttribute("title","Create Course");
-			return "teacher/createCourse";
+			return "redirect:/teacher/courses";
 		}
 		
 	}

@@ -106,6 +106,7 @@ public class HomeController {
 		String toEmail = application.getEmail();
 		String body = "Please use the code "+otp+" to verify your email.";
 		String subject="Verify Your Email - Learning Mangagement System";
+		System.out.println("Email Service Triggered");
 		emailserv.sendSimpleEmail(toEmail, body, subject);
 		application.setRequestedDate(new java.util.Date());
 		application.setVerified(false);
@@ -141,9 +142,14 @@ public class HomeController {
 			arepo.save(ap);
 			session.invalidate();
 		}
-		if(flag)
+		if(flag){
+			String toEmail = email;
+			String body = "Dear "+ap.getFullName()+", \nPlease send your highest education details like certificates to this email for your account verification.\nTeam LMS.\nThank You.";
+			String subject="Further details for Account verification - Learning Mangagement System";
+			emailserv.sendSimpleEmail(toEmail, body, subject);
 			return "redirect:/";
-		return "redirect:/";
+		}
+		return "redirect:/application";
 	}
 
 	

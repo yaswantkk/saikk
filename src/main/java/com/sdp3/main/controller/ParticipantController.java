@@ -76,13 +76,10 @@ public class ParticipantController{
 			Course c1 = this.crepo.getById(id);
 			
 			String toEmail = user.getEmail();
-			String body = "Dear "+user.getFullname()+", You have been added to a new course named "+c1.getCourseName()+".";
+			String body = "Dear "+user.getFullname()+", \nYou have been added to a new course named "+c1.getCourseName()+".\n Thank You.\n Team LMS.";
 			String subject="Added to a new Course - Learning Mangagement System";
 			emailserv.sendSimpleEmail(toEmail, body, subject);
 
-
-			
-				
 				enroll.setCourse_id(id);
 			
 				enroll.setJoined(new java.util.Date());
@@ -120,9 +117,10 @@ public class ParticipantController{
 				}
 
 				String toEmail = user.getEmail();
-				String body = "Dear "+user.getFullname()+", You have been added to a new course named "+c1.getCourseName()+". Please use these cerdentials to access the course "+
-				"Email : "+user.getEmail()+" Password : "+user.getPassword()+". Thank You, Team LMS.";
+				String body = "Dear "+user.getFullname()+",\n You have been added to a new course named "+c1.getCourseName()+". \nPlease use these cerdentials to access the course "+
+				"Email : "+user.getEmail()+"\n Password : "+user.getPassword()+".\n Thank You.\n Team LMS.";
 				String subject="Added to a new Course - Learning Mangagement System";
+				System.out.println("Email Service Triggered");
 				emailserv.sendSimpleEmail(toEmail, body, subject);
 
 

@@ -73,7 +73,7 @@ public class QuizController {
 	@GetMapping("/{qid}/updateQuiz")
 	public String updateQuiz(@PathVariable("id") Long id,Model model,@PathVariable("qid") Long qid) {
 		Course course = crepo.findByCourseCode(id);
-		Quiz quiz = this.qservice.getQuiz(id);
+		Quiz quiz = this.qservice.getQuiz(qid);
 		model.addAttribute("quiz",quiz);
 		model.addAttribute("course",course);
 		model.addAttribute("title",course.getCourseName());
@@ -81,7 +81,12 @@ public class QuizController {
 		
 		return "teacher/view_tab/updateQuiz";
 	}
-	
+	@PostMapping("/{qid}/updateSaveQuiz")
+	public String updateSaveQuiz(@PathVariable("id") Long id,Model model,@PathVariable("qid")Long qid,RedirectAttributes ra,@ModelAttribute("Quiz") Quiz quiz){
+		this.qservice.updateQuiz(quiz);
+		ra.addAttribute("id",id);
+		return "redirect:/teacher/view/course/{id}/tab/quizes";
+	}
 	@GetMapping("/{qid}/allQuestions")
 	public String allQuestions(@PathVariable("id") Long cid,@PathVariable("qid") Long qid,Model model) {
 		Course course = crepo.findByCourseCode(cid);
