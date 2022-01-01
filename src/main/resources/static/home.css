@@ -1,0 +1,21 @@
+body{
+	background:#e2e2e2!important;
+}
+
+
+/* .bg-primary{
+	background: #73d6e7 !important;
+} */
+
+
+@media (min-width: 1025px) {
+  .h-custom {
+    height: 100vh !important;
+  }
+}
+
+.card {
+  margin: 0 auto; /* Added */
+  float: none; /* Added */
+  margin-bottom: 10px; /* Added */
+}
